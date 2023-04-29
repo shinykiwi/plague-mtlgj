@@ -1,6 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://dckcb4dlbblol"]
+[gd_scene load_steps=6 format=3 uid="uid://dckcb4dlbblol"]
 
 [ext_resource type="Texture2D" uid="uid://bh8hfsy11d3wa" path="res://character.png" id="1_oyt18"]
+[ext_resource type="Script" path="res://player.gd" id="1_vhi6b"]
+[ext_resource type="Texture2D" uid="uid://bnjvn8uw4hwkv" path="res://character-side.png" id="3_4dnod"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_2kba6"]
 animations = [{
@@ -9,17 +11,29 @@ animations = [{
 "texture": ExtResource("1_oyt18")
 }],
 "loop": true,
-"name": &"default",
+"name": &"down",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_4dnod")
+}],
+"loop": true,
+"name": &"side",
 "speed": 5.0
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_r2sa8"]
 size = Vector2(16, 27)
 
-[node name="Player" type="Area2D"]
+[node name="Player" type="CharacterBody2D"]
+floor_constant_speed = true
+script = ExtResource("1_vhi6b")
+speed = 50
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_2kba6")
+animation = &"side"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 2.5)
