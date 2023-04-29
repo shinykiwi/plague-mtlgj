@@ -1,6 +1,14 @@
-[gd_scene load_steps=5 format=3 uid="uid://udabgsywayr1"]
+[gd_scene load_steps=8 format=3 uid="uid://udabgsywayr1"]
 
 [ext_resource type="PackedScene" uid="uid://bvtcnynfqa7eh" path="res://player.tscn" id="1_fg51o"]
+[ext_resource type="Script" path="res://camera.gd" id="2_ni7te"]
+[ext_resource type="PackedScene" uid="uid://c1125bbsxg7at" path="res://boundary.tscn" id="3_olv7q"]
+[ext_resource type="PackedScene" uid="uid://1y2ygy287c15" path="res://light_enemy.tscn" id="4_rnxpt"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_ek47p"]
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_umpfb"]
+data = PackedVector3Array(-0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, -0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, -0.5, 0.5, 0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, -0.5, -0.5)
 
 [sub_resource type="Environment" id="Environment_y57bx"]
 sky_custom_fov = 30.5
@@ -8,25 +16,14 @@ ambient_light_source = 3
 ambient_light_color = Color(0.611765, 0.611765, 0.611765, 1)
 ambient_light_energy = 4.04
 
-[sub_resource type="BoxMesh" id="BoxMesh_ek47p"]
-
-[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_umpfb"]
-data = PackedVector3Array(-0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, -0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, -0.5, 0.5, 0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, -0.5, -0.5)
-
 [node name="World" type="Node3D"]
-
-[node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.888817, 0.458262, 0, -0.458262, 0.888817, 0, 9.37534, 13.9813)
-environment = SubResource("Environment_y57bx")
-h_offset = 0.07
-fov = 19.4
-size = 3.733
-near = 0.164
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.204362, 2.29223, -1.25483)
 
 [node name="Player" parent="." instance=ExtResource("1_fg51o")]
+transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, -0.398392, 0.851714, -0.883996)
 
 [node name="Box" type="MeshInstance3D" parent="."]
-transform = Transform3D(56.2234, 0, 0, 0, 0.934803, 0, 0, 0, 10.1735, 16.8375, -0.450358, -3.0817)
+transform = Transform3D(56.2234, 0, 0, 0, 0.934803, 0, 0, 0, 18.2696, 16.8375, -0.450358, -3.0817)
 mesh = SubResource("BoxMesh_ek47p")
 skeleton = NodePath("")
 
@@ -34,3 +31,27 @@ skeleton = NodePath("")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Box/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_umpfb")
+
+[node name="Camera3D2" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.888817, 0.458262, 0, -0.458262, 0.888817, 0, 9.37534, 13.9813)
+environment = SubResource("Environment_y57bx")
+h_offset = 0.078
+v_offset = 1.175
+current = true
+fov = 30.1
+size = 3.733
+near = 0.164
+script = ExtResource("2_ni7te")
+
+[node name="Boundary" parent="." instance=ExtResource("3_olv7q")]
+
+[node name="Boundary2" parent="." instance=ExtResource("3_olv7q")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -9.12132)
+
+[node name="Boundary3" parent="." instance=ExtResource("3_olv7q")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -5.50466, 0, 20.0664)
+
+[node name="LightEnemy" parent="." instance=ExtResource("4_rnxpt")]
+transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 4.88675, 1.18867, -0.692799)
+
+[connection signal="area_entered" from="LightEnemy" to="LightEnemy" method="_on_area_entered"]

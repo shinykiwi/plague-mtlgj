@@ -2,3 +2,6 @@ res://main.tscn
 res://world.tscn
 res://player.tscn
 res://player.gd
+res://camera.gd
+res://light_enemy.tscn
+res://light_enemy.gd

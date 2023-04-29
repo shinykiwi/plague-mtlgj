@@ -1,0 +1,72 @@
+[gd_scene load_steps=10 format=3 uid="uid://1y2ygy287c15"]
+
+[ext_resource type="Script" path="res://light_enemy.gd" id="1_0cq6j"]
+[ext_resource type="Texture2D" uid="uid://jdk0hf38nwc2" path="res://enemy.png" id="1_uoeom"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lqk80"]
+atlas = ExtResource("1_uoeom")
+region = Rect2(756, 0, 756, 1197)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fwb7v"]
+atlas = ExtResource("1_uoeom")
+region = Rect2(1512, 0, 756, 1197)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_234vp"]
+atlas = ExtResource("1_uoeom")
+region = Rect2(2268, 0, 756, 1197)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1mcxw"]
+atlas = ExtResource("1_uoeom")
+region = Rect2(3024, 0, 756, 1197)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mj7ot"]
+atlas = ExtResource("1_uoeom")
+region = Rect2(0, 0, 756, 1197)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_2xdwe"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lqk80")
+}],
+"loop": true,
+"name": &"attack",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fwb7v")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_234vp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1mcxw")
+}],
+"loop": false,
+"name": &"death",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mj7ot")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_bo0w3"]
+size = Vector3(6.1944, 9.53918, 0.001)
+
+[node name="LightEnemy" type="Area3D"]
+script = ExtResource("1_0cq6j")
+
+[node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="."]
+billboard = 2
+sprite_frames = SubResource("SpriteFrames_2xdwe")
+animation = &"attack"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.12, 0, 0)
+shape = SubResource("BoxShape3D_bo0w3")
