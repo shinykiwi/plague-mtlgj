@@ -1,12 +1,31 @@
-[gd_scene load_steps=3 format=3 uid="uid://bfsqxhvtdp3sq"]
+[gd_scene load_steps=5 format=3 uid="uid://bfsqxhvtdp3sq"]
 
 [ext_resource type="PackedScene" uid="uid://dckcb4dlbblol" path="res://player.tscn" id="1_4dyxp"]
 [ext_resource type="Script" path="res://world.gd" id="1_sxwjc"]
 
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_dj3a8"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_w1mwt"]
+size = Vector2(1922, 690)
+
 [node name="World" type="Node2D"]
 script = ExtResource("1_sxwjc")
 
+[node name="Ground" type="StaticBody2D" parent="."]
+position = Vector2(0, 400)
+metadata/_edit_group_ = true
+
+[node name="Texture" type="TextureRect" parent="Ground"]
+offset_right = 1920.0
+offset_bottom = 688.0
+texture = SubResource("PlaceholderTexture2D_dj3a8")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ground"]
+position = Vector2(959, 343)
+shape = SubResource("RectangleShape2D_w1mwt")
+
 [node name="Player" parent="." instance=ExtResource("1_4dyxp")]
-position = Vector2(64, 88)
+transform = Transform3D(1.52588e-05, 0, 0, 0, 1.52588e-05, 0, 0, 0, 0, 616, 456, 0)
 
 [node name="Camera2D" type="Camera2D" parent="."]
+anchor_mode = 0

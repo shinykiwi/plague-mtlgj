@@ -1,6 +1,4 @@
-res://player.tscn
+res://main.tscn
 res://world.tscn
-res://field.gd
-res://field.tscn
+res://player.tscn
 res://player.gd
-res://world.gd

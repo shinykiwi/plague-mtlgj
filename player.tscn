@@ -1,40 +1,66 @@
-[gd_scene load_steps=6 format=3 uid="uid://dckcb4dlbblol"]
+[gd_scene load_steps=9 format=3 uid="uid://bvtcnynfqa7eh"]
 
-[ext_resource type="Texture2D" uid="uid://bh8hfsy11d3wa" path="res://character.png" id="1_oyt18"]
-[ext_resource type="Script" path="res://player.gd" id="1_vhi6b"]
-[ext_resource type="Texture2D" uid="uid://bnjvn8uw4hwkv" path="res://character-side.png" id="3_4dnod"]
+[ext_resource type="Script" path="res://player.gd" id="1_cu1oj"]
+[ext_resource type="Texture2D" uid="uid://bj2l133rxxiym" path="res://character-spritesheet.png" id="2_8hgnq"]
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_2kba6"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_chh76"]
+size = Vector3(4.372, 7.67771, 0.331567)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c7vau"]
+atlas = ExtResource("2_8hgnq")
+region = Rect2(1020, 0, 510, 780)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_notqu"]
+atlas = ExtResource("2_8hgnq")
+region = Rect2(1530, 0, 510, 780)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u7w67"]
+atlas = ExtResource("2_8hgnq")
+region = Rect2(0, 0, 510, 780)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bw46m"]
+atlas = ExtResource("2_8hgnq")
+region = Rect2(510, 0, 510, 780)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_gurw8"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("1_oyt18")
+"texture": SubResource("AtlasTexture_c7vau")
 }],
 "loop": true,
-"name": &"down",
+"name": &"idle",
 "speed": 5.0
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("3_4dnod")
+"texture": SubResource("AtlasTexture_notqu")
 }],
 "loop": true,
-"name": &"side",
+"name": &"jump",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u7w67")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bw46m")
+}],
+"loop": true,
+"name": &"walk",
 "speed": 5.0
 }]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_r2sa8"]
-size = Vector2(16, 27)
+[node name="Player" type="CharacterBody3D"]
+transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, 0.980265, -0.685678)
+script = ExtResource("1_cu1oj")
+metadata/_edit_group_ = true
 
-[node name="Player" type="CharacterBody2D"]
-floor_constant_speed = true
-script = ExtResource("1_vhi6b")
-speed = 50
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_chh76")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-sprite_frames = SubResource("SpriteFrames_2kba6")
-animation = &"side"
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 2.5)
-shape = SubResource("RectangleShape2D_r2sa8")
+[node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="."]
+billboard = 2
+sprite_frames = SubResource("SpriteFrames_gurw8")
+animation = &"walk"
