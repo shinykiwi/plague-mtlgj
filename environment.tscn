@@ -1,0 +1,153 @@
+[gd_scene load_steps=2 format=3 uid="uid://fqykd5mv2uaf"]
+
+[ext_resource type="Texture2D" uid="uid://b5084kkno2g50" path="res://medieval1.png" id="1_q788o"]
+
+[node name="Environment" type="Node3D"]
+
+[node name="Grass" type="Sprite3D" parent="."]
+transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, -2.52569, 0.42083, 0)
+billboard = 2
+shaded = true
+texture = ExtResource("1_q788o")
+region_enabled = true
+region_rect = Rect2(105.812, 75.0275, 243.04, 379.75)
+
+[node name="Grass2" type="Sprite3D" parent="."]
+transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, -1.58326, 0.386025, -4.62758)
+billboard = 2
+shaded = true
+texture = ExtResource("1_q788o")
+region_enabled = true
+region_rect = Rect2(749.043, 73.6375, 402.535, 429.117)
+
+[node name="House" type="Sprite3D" parent="."]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 3.77833, 3.14065, -11.0751)
+billboard = 2
+shaded = true
+texture = ExtResource("1_q788o")
+region_enabled = true
+region_rect = Rect2(1203.71, 129.564, 968.363, 1310.14)
+
+[node name="House2" type="Sprite3D" parent="."]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 16.7266, 3.14065, -11.0751)
+billboard = 2
+shaded = true
+texture = ExtResource("1_q788o")
+region_enabled = true
+region_rect = Rect2(1203.71, 129.564, 968.363, 1310.14)
+
+[node name="Fence" type="Sprite3D" parent="."]
+transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 6.54674, 1.02849, -11.6007)
+billboard = 2
+shaded = true
+texture = ExtResource("1_q788o")
+region_enabled = true
+region_rect = Rect2(641.675, 930.836, 535.447, 493.675)
+
+[node name="Fence2" type="Sprite3D" parent="."]
+transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 8.3458, 1.02849, -11.6007)
+billboard = 2
+shaded = true
+texture = ExtResource("1_q788o")
+region_enabled = true
+region_rect = Rect2(641.675, 930.836, 535.447, 493.675)
+
+[node name="Barrel" type="Sprite3D" parent="."]
+transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 1.88042, 1.40668, -9.2282)
+billboard = 2
+shaded = true
+texture = ExtResource("1_q788o")
+region_enabled = true
+region_rect = Rect2(125.215, 927.039, 394.94, 581.017)
+
+[node name="Barrel2" type="Sprite3D" parent="."]
+transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 13.0398, 1.40668, -9.2282)
+flip_h = true
+billboard = 2
+shaded = true
+texture = ExtResource("1_q788o")
+region_enabled = true
+region_rect = Rect2(125.215, 927.039, 394.94, 581.017)
+
+[node name="Wheelbarrow" type="Sprite3D" parent="."]
+transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 6.50336, 1.32245, -8.82377)
+billboard = 2
+shaded = true
+texture = ExtResource("1_q788o")
+region_enabled = true
+region_rect = Rect2(2229.03, 38.4235, 1036.72, 767.095)
+
+[node name="Rock" type="Sprite3D" parent="."]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -0.988268, 0.725325, -10.6706)
+modulate = Color(0.760784, 0.65098, 0.615686, 1)
+billboard = 2
+shaded = true
+texture = ExtResource("1_q788o")
+region_enabled = true
+region_rect = Rect2(2213.84, 1189.07, 622.79, 356.965)
+
+[node name="DeadRat" type="Sprite3D" parent="."]
+transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 2.23941, 0.386025, -4.31142)
+billboard = 2
+shaded = true
+texture = ExtResource("1_q788o")
+region_enabled = true
+region_rect = Rect2(2840.43, 1033.37, 451.902, 269.623)
+
+[node name="DeadRat2" type="Sprite3D" parent="."]
+transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 7.43949, 0.386025, -8.73312)
+flip_h = true
+billboard = 2
+shaded = true
+texture = ExtResource("1_q788o")
+region_enabled = true
+region_rect = Rect2(2840.43, 1033.37, 451.902, 269.623)
+
+[node name="Grass3" type="Sprite3D" parent="."]
+transform = Transform3D(0.757, 0, 0, 0, 0.757, 0, 0, 0, 0.757, 8.47559, 1.21194, -12.7894)
+billboard = 2
+shaded = true
+texture = ExtResource("1_q788o")
+region_enabled = true
+region_rect = Rect2(749.043, 73.6375, 402.535, 429.117)
+
+[node name="Grass4" type="Sprite3D" parent="."]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 10.2327, 1.00088, -11.9766)
+billboard = 2
+shaded = true
+texture = ExtResource("1_q788o")
+region_enabled = true
+region_rect = Rect2(749.043, 73.6375, 402.535, 429.117)
+
+[node name="Grass5" type="Sprite3D" parent="."]
+transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 11.6968, 1.00088, -7.69818)
+billboard = 2
+shaded = true
+texture = ExtResource("1_q788o")
+region_enabled = true
+region_rect = Rect2(749.043, 73.6375, 402.535, 429.117)
+
+[node name="Grass6" type="Sprite3D" parent="."]
+transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 4.91489, 0.386025, -2.18781)
+billboard = 2
+shaded = true
+texture = ExtResource("1_q788o")
+region_enabled = true
+region_rect = Rect2(429.015, 482.731, 246.837, 406.333)
+
+[node name="Grass7" type="Sprite3D" parent="."]
+transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, -6.94173, 0.386025, -9.43857)
+billboard = 2
+shaded = true
+texture = ExtResource("1_q788o")
+region_enabled = true
+region_rect = Rect2(429.015, 482.731, 246.837, 406.333)
+
+[node name="Grass8" type="Sprite3D" parent="."]
+transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 15.0583, 0.386025, -6.87466)
+flip_h = true
+billboard = 2
+shaded = true
+texture = ExtResource("1_q788o")
+region_enabled = true
+region_rect = Rect2(429.015, 482.731, 246.837, 406.333)

@@ -1,11 +1,65 @@
-[gd_scene load_steps=8 format=3 uid="uid://udabgsywayr1"]
+[gd_scene load_steps=30 format=3 uid="uid://udabgsywayr1"]
 
 [ext_resource type="PackedScene" uid="uid://bvtcnynfqa7eh" path="res://player.tscn" id="1_fg51o"]
+[ext_resource type="Script" path="res://main.gd" id="1_l7qnr"]
 [ext_resource type="Script" path="res://camera.gd" id="2_ni7te"]
+[ext_resource type="PackedScene" uid="uid://cl5e6vq0k5nu4" path="res://level_complete.tscn" id="3_0hygi"]
 [ext_resource type="PackedScene" uid="uid://c1125bbsxg7at" path="res://boundary.tscn" id="3_olv7q"]
-[ext_resource type="PackedScene" uid="uid://1y2ygy287c15" path="res://light_enemy.tscn" id="4_rnxpt"]
+[ext_resource type="PackedScene" uid="uid://ckvbnwcar0m1m" path="res://light_enemy.tscn" id="4_rnxpt"]
+[ext_resource type="PackedScene" uid="uid://tiis1cfnpwea" path="res://ball.tscn" id="4_y58gf"]
+[ext_resource type="Texture2D" uid="uid://bonwti1ay3mr7" path="res://dirt.png" id="6_0jdvm"]
+[ext_resource type="PackedScene" uid="uid://fqykd5mv2uaf" path="res://environment.tscn" id="9_pf2ke"]
+[ext_resource type="Texture2D" uid="uid://dch4fdpm2veg4" path="res://woman.png" id="10_b0yni"]
+[ext_resource type="Texture2D" uid="uid://b2i4asutybhrr" path="res://bckg.png" id="10_n41qc"]
+[ext_resource type="Texture2D" uid="uid://b2ljsignubbc6" path="res://bckg2.png" id="11_ah20p"]
+[ext_resource type="Texture2D" uid="uid://dhl3fellwxd7s" path="res://rats.png" id="11_r5pq0"]
+[ext_resource type="Texture2D" uid="uid://1jqtub43sanp" path="res://bighouse.png" id="12_px1a6"]
+
+[sub_resource type="Animation" id="Animation_iuwap"]
+resource_name = "burst"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:light_energy")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 10.714]
+}
+
+[sub_resource type="Animation" id="Animation_nsniy"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:light_energy")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_jvumi"]
+_data = {
+"RESET": SubResource("Animation_nsniy"),
+"burst": SubResource("Animation_iuwap")
+}
 
 [sub_resource type="BoxMesh" id="BoxMesh_ek47p"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_coi51"]
+diffuse_mode = 3
+albedo_color = Color(0.988235, 0.952941, 0.929412, 1)
+albedo_texture = ExtResource("6_0jdvm")
+uv1_scale = Vector3(6, 6, 6)
+uv1_offset = Vector3(0.947, 0, 0)
+uv1_triplanar_sharpness = 1.07177
 
 [sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_umpfb"]
 data = PackedVector3Array(-0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, -0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, -0.5, 0.5, 0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, -0.5, -0.5)
@@ -16,16 +70,125 @@ ambient_light_source = 3
 ambient_light_color = Color(0.611765, 0.611765, 0.611765, 1)
 ambient_light_energy = 4.04
 
-[node name="World" type="Node3D"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_gg2fe"]
+atlas = ExtResource("10_b0yni")
+region = Rect2(0, 0, 849, 758)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c4j2v"]
+atlas = ExtResource("10_b0yni")
+region = Rect2(849, 0, 849, 758)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_h8dve"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gg2fe")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c4j2v")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7tkwg"]
+atlas = ExtResource("11_r5pq0")
+region = Rect2(0, 0, 528, 362)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t2hkm"]
+atlas = ExtResource("11_r5pq0")
+region = Rect2(528, 0, 528, 362)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lrqhw"]
+atlas = ExtResource("11_r5pq0")
+region = Rect2(1056, 0, 528, 362)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7uumn"]
+atlas = ExtResource("11_r5pq0")
+region = Rect2(1584, 0, 528, 362)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_cra0h"]
+animations = [{
+"frames": [{
+"duration": 0.6,
+"texture": SubResource("AtlasTexture_7tkwg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t2hkm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lrqhw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7uumn")
+}],
+"loop": true,
+"name": &"default",
+"speed": 7.0
+}]
+
+[node name="Main" type="Node3D"]
+process_mode = 3
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.204362, 2.29223, -1.25483)
+script = ExtResource("1_l7qnr")
+mob_scene = ExtResource("4_rnxpt")
+level_complete = ExtResource("3_0hygi")
 
 [node name="Player" parent="." instance=ExtResource("1_fg51o")]
-transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, -0.398392, 0.851714, -0.883996)
+process_mode = 1
+transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, -0.389527, 1.17321, -0.894174)
 
-[node name="Box" type="MeshInstance3D" parent="."]
-transform = Transform3D(56.2234, 0, 0, 0, 0.934803, 0, 0, 0, 18.2696, 16.8375, -0.450358, -3.0817)
+[node name="Weapon" parent="Player" instance=ExtResource("4_y58gf")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 2.87707, 0.2156, -0.203314)
+
+[node name="Sprite3D" parent="Player/Weapon" index="0"]
+visible = false
+
+[node name="OmniLight3D" parent="Player/Weapon" index="2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.277081, 0, 0.177601)
+light_color = Color(1, 1, 1, 1)
+light_energy = 0.0
+light_size = 0.295
+omni_range = 1.25
+omni_attenuation = 1.31951
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Player"]
+root_node = NodePath("../Weapon/OmniLight3D")
+libraries = {
+"": SubResource("AnimationLibrary_jvumi")
+}
+
+[node name="Box2" type="MeshInstance3D" parent="."]
+process_mode = 1
+transform = Transform3D(40.1267, 0, 0, 0, 0.934803, 0, 0, 0, 18.2696, 32.7103, -0.450358, -3.0817)
 mesh = SubResource("BoxMesh_ek47p")
 skeleton = NodePath("")
+surface_material_override/0 = SubResource("StandardMaterial3D_coi51")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Box2"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Box2/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_umpfb")
+
+[node name="Box3" type="MeshInstance3D" parent="."]
+process_mode = 1
+transform = Transform3D(40.1267, 0, 0, 0, 0.934803, 0, 0, 0, 18.2696, 72.7103, -0.450358, -3.0817)
+mesh = SubResource("BoxMesh_ek47p")
+skeleton = NodePath("")
+surface_material_override/0 = SubResource("StandardMaterial3D_coi51")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Box3"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Box3/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_umpfb")
+
+[node name="Box" type="MeshInstance3D" parent="."]
+process_mode = 1
+transform = Transform3D(40.1267, 0, 0, 0, 0.934803, 0, 0, 0, 18.2696, -6.56798, -0.450358, -3.0817)
+mesh = SubResource("BoxMesh_ek47p")
+skeleton = NodePath("")
+surface_material_override/0 = SubResource("StandardMaterial3D_coi51")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Box"]
 
@@ -33,6 +196,7 @@ skeleton = NodePath("")
 shape = SubResource("ConcavePolygonShape3D_umpfb")
 
 [node name="Camera3D2" type="Camera3D" parent="."]
+process_mode = 1
 transform = Transform3D(1, 0, 0, 0, 0.888817, 0.458262, 0, -0.458262, 0.888817, 0, 9.37534, 13.9813)
 environment = SubResource("Environment_y57bx")
 h_offset = 0.078
@@ -44,14 +208,95 @@ near = 0.164
 script = ExtResource("2_ni7te")
 
 [node name="Boundary" parent="." instance=ExtResource("3_olv7q")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 4.51886)
 
 [node name="Boundary2" parent="." instance=ExtResource("3_olv7q")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -9.12132)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -10.1213)
 
 [node name="Boundary3" parent="." instance=ExtResource("3_olv7q")]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -5.50466, 0, 20.0664)
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -7.67394, 0, 20.0664)
 
-[node name="LightEnemy" parent="." instance=ExtResource("4_rnxpt")]
-transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 4.88675, 1.18867, -0.692799)
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.5, 0.866025, 0, -0.866025, 0.5, -1.727, 4.57507, 12.2876)
+light_color = Color(0.0235294, 0.443137, 0.933333, 1)
+light_energy = 1.667
+light_indirect_energy = 1.333
+light_volumetric_fog_energy = 0.467
+directional_shadow_fade_start = 0.817
 
-[connection signal="area_entered" from="LightEnemy" to="LightEnemy" method="_on_area_entered"]
+[node name="Environment" parent="." instance=ExtResource("9_pf2ke")]
+
+[node name="Grass2" parent="Environment" index="1"]
+transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, -1.58326, 0.565225, -4.62758)
+
+[node name="Barrel" parent="Environment" index="6"]
+transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 1.88042, 0.841658, -9.2282)
+
+[node name="Barrel2" parent="Environment" index="7"]
+transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 13.0398, 0.854724, -9.2282)
+
+[node name="Grass6" parent="Environment" index="15"]
+transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 4.91489, 0.480815, -2.18781)
+
+[node name="Grass8" parent="Environment" index="17"]
+transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 15.0583, 0.535882, -6.87466)
+
+[node name="Person" type="AnimatedSprite3D" parent="Environment"]
+transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, -3.88085, 0.920485, -8.41994)
+billboard = 2
+shaded = true
+sprite_frames = SubResource("SpriteFrames_h8dve")
+autoplay = "default"
+frame_progress = 0.273581
+
+[node name="Rats" type="AnimatedSprite3D" parent="Environment"]
+transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 9.25688, 0.42083, -4.67218)
+billboard = 2
+shaded = true
+sprite_frames = SubResource("SpriteFrames_cra0h")
+autoplay = "default"
+frame_progress = 0.280549
+
+[node name="House3" type="Sprite3D" parent="Environment"]
+transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, -6.7505, 3.14065, -11.6339)
+billboard = 2
+shaded = true
+texture = ExtResource("12_px1a6")
+region_rect = Rect2(1203.71, 129.564, 968.363, 1310.14)
+
+[node name="OmniLight3D" type="OmniLight3D" parent="Environment"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.60562, 2.83688, -11.4619)
+light_color = Color(0.74902, 0.411765, 0, 1)
+light_energy = 6.824
+light_indirect_energy = 2.467
+light_size = 0.342
+light_specular = 8.7
+omni_range = 3.916
+
+[node name="Boundary4" parent="." instance=ExtResource("3_olv7q")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 82.3261, 0, 20.0664)
+
+[node name="background" type="Sprite3D" parent="."]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.27, -16.4937, 1.61274, -17.949)
+flip_h = true
+shaded = true
+texture = ExtResource("10_n41qc")
+
+[node name="background2" type="Sprite3D" parent="."]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.27, 0.00202647, 1.61274, -18.6215)
+shaded = true
+texture = ExtResource("11_ah20p")
+
+[node name="background3" type="Sprite3D" parent="."]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.27, 33.4935, 1.61274, -17.9695)
+shaded = true
+texture = ExtResource("10_n41qc")
+
+[node name="background4" type="Sprite3D" parent="."]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.27, 17.1185, 1.61274, -18.6215)
+flip_h = true
+shaded = true
+texture = ExtResource("11_ah20p")
+
+[editable path="Player/Weapon"]
+[editable path="Environment"]

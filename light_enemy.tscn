@@ -1,7 +1,10 @@
-[gd_scene load_steps=10 format=3 uid="uid://1y2ygy287c15"]
+[gd_scene load_steps=14 format=3 uid="uid://ckvbnwcar0m1m"]
 
 [ext_resource type="Script" path="res://light_enemy.gd" id="1_0cq6j"]
 [ext_resource type="Texture2D" uid="uid://jdk0hf38nwc2" path="res://enemy.png" id="1_uoeom"]
+[ext_resource type="PackedScene" uid="uid://bc5lww4mx7u5a" path="res://health_bar.tscn" id="2_5ascd"]
+[ext_resource type="PackedScene" uid="uid://bp0nj7kch63iv" path="res://wander_controller.tscn" id="4_3kvwq"]
+[ext_resource type="PackedScene" uid="uid://bpl7ew76x5mhq" path="res://player_detection_zone.tscn" id="5_t4ey6"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_lqk80"]
 atlas = ExtResource("1_uoeom")
@@ -57,16 +60,34 @@ animations = [{
 }]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_bo0w3"]
-size = Vector3(6.1944, 9.53918, 0.001)
+size = Vector3(6.1944, 9.53918, 2.08126)
 
-[node name="LightEnemy" type="Area3D"]
+[sub_resource type="SphereShape3D" id="SphereShape3D_cix28"]
+radius = 15.376
+
+[node name="LightEnemy" type="CharacterBody3D"]
+transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, 0, 0)
 script = ExtResource("1_0cq6j")
 
 [node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="."]
 billboard = 2
 sprite_frames = SubResource("SpriteFrames_2xdwe")
-animation = &"attack"
+animation = &"idle"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.12, 0, 0)
 shape = SubResource("BoxShape3D_bo0w3")
+
+[node name="HealthBar3D" parent="." instance=ExtResource("2_5ascd")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 5.31865, 0)
+
+[node name="WanderController" parent="." instance=ExtResource("4_3kvwq")]
+
+[node name="PlayerDetectionZone" parent="." instance=ExtResource("5_t4ey6")]
+
+[node name="CollisionShape3D" parent="PlayerDetectionZone" index="0"]
+shape = SubResource("SphereShape3D_cix28")
+
+[connection signal="animation_finished" from="AnimatedSprite3D" to="." method="_on_animated_sprite_3d_animation_finished"]
+
+[editable path="PlayerDetectionZone"]

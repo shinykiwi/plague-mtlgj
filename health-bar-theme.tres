@@ -1,0 +1,24 @@
+[gd_resource type="Theme" load_steps=3 format=3 uid="uid://bu4iaaka06gx4"]
+
+[ext_resource type="StyleBox" uid="uid://ch2i83vjxs30k" path="res://yellow_style.tres" id="1_nknu5"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_54iy6"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[resource]
+ProgressBar/colors/font_color = Color(1, 1, 1, 1)
+ProgressBar/colors/font_outline_color = Color(0, 0, 0, 1)
+ProgressBar/constants/outline_size = 7
+ProgressBar/font_sizes/font_size = 18
+ProgressBar/fonts/font = null
+ProgressBar/styles/background = SubResource("StyleBoxFlat_54iy6")
+ProgressBar/styles/fill = ExtResource("1_nknu5")

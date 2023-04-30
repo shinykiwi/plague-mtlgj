@@ -1,7 +1,10 @@
-res://main.tscn
-res://world.tscn
 res://player.tscn
-res://player.gd
-res://camera.gd
+res://health-bar-theme.tres
+res://main.tscn
 res://light_enemy.tscn
-res://light_enemy.gd
+res://wander_controller.tscn
+res://player_detection_zone.tscn
+res://level_complete.tscn
+res://ball.tscn
+res://boundary.tscn
+res://player.gd

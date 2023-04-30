@@ -5,6 +5,10 @@ const SPEED = 5.0
 const JUMP_VELOCITY = 4.5
 
 @onready var sprite = $AnimatedSprite3D
+@onready var walking = $AudioStreamPlayer
+@onready var weapon_sprite = $Weapon/Sprite3D
+@onready var weapon = $Weapon
+@export var damage = 1
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
@@ -13,7 +17,7 @@ var just_attacked = 0
 
 func attack():
 	sprite.play("attack")
-	just_attacked = 10
+	just_attacked = 16
 	
 
 func jump():
@@ -48,14 +52,24 @@ func _physics_process(delta):
 			
 			if is_on_floor():
 				sprite.play("walk")
+				if not walking.playing:
+					walking.play()
+				
 			else:
 				sprite.play("jump")
+				if walking.playing:
+					walking.stop()
 				
 			
 			if direction.x < 0:
 				sprite.flip_h = true
+				weapon_sprite.flip_h = true
+				weapon.position.x = -(sprite.position.x + 2)
+				
 			else:
 				sprite.flip_h = false
+				weapon_sprite.flip_h = false
+				weapon.position.x = (sprite.position.x + 2)
 					
 			velocity.x = direction.x * SPEED
 			velocity.z = direction.z * SPEED
@@ -64,6 +78,8 @@ func _physics_process(delta):
 			sprite.stop()
 			if is_on_floor():
 				sprite.play("idle")
+				if walking.playing:
+					walking.stop()
 			velocity.x = move_toward(velocity.x, 0, SPEED)
 			velocity.z = move_toward(velocity.z, 0, SPEED)
 
@@ -72,8 +88,8 @@ func _physics_process(delta):
 
 
 func _on_animated_sprite_3d_animation_finished():
-	print("got hereeee")
 	if $AnimatedSprite3D.animation == "attack":
-		print("got here")
 		await get_tree().create_timer(2.0).timeout
 		sprite.stop()
+		
+

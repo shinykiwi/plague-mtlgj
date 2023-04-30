@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://bpl7ew76x5mhq"]
+
+[ext_resource type="Script" path="res://player_detection_zone.gd" id="1_j6e2p"]
+
+[node name="PlayerDetectionZone" type="Area3D"]
+script = ExtResource("1_j6e2p")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]

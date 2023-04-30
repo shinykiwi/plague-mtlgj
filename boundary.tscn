@@ -1,7 +1,7 @@
 [gd_scene load_steps=2 format=3 uid="uid://c1125bbsxg7at"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_kdad4"]
-size = Vector3(62.5815, 17.822, 3.01834)
+size = Vector3(187, 17.822, 3.01834)
 
 [node name="Boundary" type="StaticBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3.51886)
