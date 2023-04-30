@@ -1,0 +1,56 @@
+[gd_scene load_steps=9 format=3 uid="uid://cv1ccdncycoyj"]
+
+[ext_resource type="Script" path="res://rats.gd" id="1_4hoou"]
+[ext_resource type="Texture2D" uid="uid://dhl3fellwxd7s" path="res://rats.png" id="1_g57ic"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n5ct2"]
+atlas = ExtResource("1_g57ic")
+region = Rect2(0, 0, 528, 362)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vucrg"]
+atlas = ExtResource("1_g57ic")
+region = Rect2(528, 0, 528, 362)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h5i32"]
+atlas = ExtResource("1_g57ic")
+region = Rect2(1056, 0, 528, 362)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iadxy"]
+atlas = ExtResource("1_g57ic")
+region = Rect2(1584, 0, 528, 362)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_x3qte"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n5ct2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vucrg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h5i32")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_iadxy")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_yyyio"]
+size = Vector3(1, 0.325554, 0.353326)
+
+[node name="Rats" type="CharacterBody3D"]
+collision_layer = 2
+script = ExtResource("1_4hoou")
+
+[node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="."]
+transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, 0, 0)
+sprite_frames = SubResource("SpriteFrames_x3qte")
+autoplay = "default"
+frame_progress = 0.169055
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_yyyio")

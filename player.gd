@@ -5,7 +5,8 @@ const SPEED = 5.0
 const JUMP_VELOCITY = 4.5
 
 @onready var sprite = $AnimatedSprite3D
-@onready var walking = $AudioStreamPlayer
+@onready var walking = $WalkingSound
+@onready var punching = $PunchingSound
 @onready var weapon_sprite = $Weapon/Sprite3D
 @onready var weapon = $Weapon
 @export var damage = 1
@@ -18,6 +19,8 @@ var just_attacked = 0
 func attack():
 	sprite.play("attack")
 	just_attacked = 16
+	if not punching.playing:
+		punching.play()
 	
 
 func jump():

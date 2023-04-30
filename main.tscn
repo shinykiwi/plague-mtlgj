@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://udabgsywayr1"]
+[gd_scene load_steps=26 format=3 uid="uid://udabgsywayr1"]
 
 [ext_resource type="PackedScene" uid="uid://bvtcnynfqa7eh" path="res://player.tscn" id="1_fg51o"]
 [ext_resource type="Script" path="res://main.gd" id="1_l7qnr"]
@@ -12,8 +12,9 @@
 [ext_resource type="Texture2D" uid="uid://dch4fdpm2veg4" path="res://woman.png" id="10_b0yni"]
 [ext_resource type="Texture2D" uid="uid://b2i4asutybhrr" path="res://bckg.png" id="10_n41qc"]
 [ext_resource type="Texture2D" uid="uid://b2ljsignubbc6" path="res://bckg2.png" id="11_ah20p"]
-[ext_resource type="Texture2D" uid="uid://dhl3fellwxd7s" path="res://rats.png" id="11_r5pq0"]
+[ext_resource type="PackedScene" uid="uid://cv1ccdncycoyj" path="res://rats.tscn" id="11_gj2a7"]
 [ext_resource type="Texture2D" uid="uid://1jqtub43sanp" path="res://bighouse.png" id="12_px1a6"]
+[ext_resource type="AudioStream" uid="uid://bhxvbbj55po5m" path="res://music-mtlgamejam.wav" id="15_kr8dc"]
 
 [sub_resource type="Animation" id="Animation_iuwap"]
 resource_name = "burst"
@@ -92,48 +93,13 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_7tkwg"]
-atlas = ExtResource("11_r5pq0")
-region = Rect2(0, 0, 528, 362)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_t2hkm"]
-atlas = ExtResource("11_r5pq0")
-region = Rect2(528, 0, 528, 362)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_lrqhw"]
-atlas = ExtResource("11_r5pq0")
-region = Rect2(1056, 0, 528, 362)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_7uumn"]
-atlas = ExtResource("11_r5pq0")
-region = Rect2(1584, 0, 528, 362)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_cra0h"]
-animations = [{
-"frames": [{
-"duration": 0.6,
-"texture": SubResource("AtlasTexture_7tkwg")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_t2hkm")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_lrqhw")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_7uumn")
-}],
-"loop": true,
-"name": &"default",
-"speed": 7.0
-}]
-
 [node name="Main" type="Node3D"]
 process_mode = 3
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.204362, 2.29223, -1.25483)
 script = ExtResource("1_l7qnr")
 mob_scene = ExtResource("4_rnxpt")
 level_complete = ExtResource("3_0hygi")
+rat_scene = ExtResource("11_gj2a7")
 
 [node name="Player" parent="." instance=ExtResource("1_fg51o")]
 process_mode = 1
@@ -171,18 +137,6 @@ surface_material_override/0 = SubResource("StandardMaterial3D_coi51")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Box2/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_umpfb")
 
-[node name="Box3" type="MeshInstance3D" parent="."]
-process_mode = 1
-transform = Transform3D(40.1267, 0, 0, 0, 0.934803, 0, 0, 0, 18.2696, 72.7103, -0.450358, -3.0817)
-mesh = SubResource("BoxMesh_ek47p")
-skeleton = NodePath("")
-surface_material_override/0 = SubResource("StandardMaterial3D_coi51")
-
-[node name="StaticBody3D" type="StaticBody3D" parent="Box3"]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Box3/StaticBody3D"]
-shape = SubResource("ConcavePolygonShape3D_umpfb")
-
 [node name="Box" type="MeshInstance3D" parent="."]
 process_mode = 1
 transform = Transform3D(40.1267, 0, 0, 0, 0.934803, 0, 0, 0, 18.2696, -6.56798, -0.450358, -3.0817)
@@ -214,7 +168,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 4.51886)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -10.1213)
 
 [node name="Boundary3" parent="." instance=ExtResource("3_olv7q")]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -7.67394, 0, 20.0664)
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -7.67394, 11.4877, 20.0664)
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.5, 0.866025, 0, -0.866025, 0.5, -1.727, 4.57507, 12.2876)
@@ -249,13 +203,7 @@ sprite_frames = SubResource("SpriteFrames_h8dve")
 autoplay = "default"
 frame_progress = 0.273581
 
-[node name="Rats" type="AnimatedSprite3D" parent="Environment"]
-transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 9.25688, 0.42083, -4.67218)
-billboard = 2
-shaded = true
-sprite_frames = SubResource("SpriteFrames_cra0h")
-autoplay = "default"
-frame_progress = 0.280549
+[node name="Rats" parent="Environment" instance=ExtResource("11_gj2a7")]
 
 [node name="House3" type="Sprite3D" parent="Environment"]
 transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, -6.7505, 3.14065, -11.6339)
@@ -273,30 +221,45 @@ light_size = 0.342
 light_specular = 8.7
 omni_range = 3.916
 
-[node name="Boundary4" parent="." instance=ExtResource("3_olv7q")]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 82.3261, 0, 20.0664)
-
-[node name="background" type="Sprite3D" parent="."]
+[node name="background" type="Sprite3D" parent="Environment"]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.27, -16.4937, 1.61274, -17.949)
 flip_h = true
 shaded = true
 texture = ExtResource("10_n41qc")
 
-[node name="background2" type="Sprite3D" parent="."]
+[node name="background2" type="Sprite3D" parent="Environment"]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.27, 0.00202647, 1.61274, -18.6215)
 shaded = true
 texture = ExtResource("11_ah20p")
 
-[node name="background3" type="Sprite3D" parent="."]
+[node name="background3" type="Sprite3D" parent="Environment"]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.27, 33.4935, 1.61274, -17.9695)
 shaded = true
 texture = ExtResource("10_n41qc")
 
-[node name="background4" type="Sprite3D" parent="."]
+[node name="background4" type="Sprite3D" parent="Environment"]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.27, 17.1185, 1.61274, -18.6215)
 flip_h = true
 shaded = true
 texture = ExtResource("11_ah20p")
 
+[node name="Boundary4" parent="." instance=ExtResource("3_olv7q")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 33.3033, 0, 20.0664)
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("15_kr8dc")
+volume_db = -10.569
+autoplay = true
+
+[node name="RatDestination" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -70.6713, 0, -2.72003)
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 2.0
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+
 [editable path="Player/Weapon"]
 [editable path="Environment"]
+[editable path="Environment/Rats"]

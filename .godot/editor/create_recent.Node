@@ -1,7 +1,12 @@
+Timer
+CollisionShape3D
+AnimatedSprite3D
+CharacterBody3D
+Marker3D
+Button
 AudioStreamPlayer
 AnimationPlayer
 OmniLight3D
-AnimatedSprite3D
 Sprite3D
 MeshInstance3D
 GridMap
@@ -12,13 +17,9 @@ Container
 ColorRect
 TextureRect
 Label
-CollisionShape3D
 Area3D
-Timer
 Node
-CharacterBody3D
 DirectionalLight3D
-Marker3D
 SubViewport
 ProgressBar
 StaticBody3D
@@ -28,6 +29,4 @@ StaticBody2D
 CollisionShape2D
 Area2D
 CharacterBody2D
-Button
 AnimatedSprite2D
-Node2D

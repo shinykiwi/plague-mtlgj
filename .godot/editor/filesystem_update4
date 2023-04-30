@@ -8,3 +8,15 @@ res://level_complete.tscn
 res://ball.tscn
 res://boundary.tscn
 res://player.gd
+res://level_complete.gd
+res://main.gd
+res://Rats.gd
+res://rats.tscn
+res://rats.gd
+res://camera.gd
+res://health_bar_2d.gd
+res://health_bar_3d.gd
+res://light_enemy.gd
+res://player_detection_zone.gd
+res://wander_controller.gd
+res://weapon.gd
